@@ -55,7 +55,7 @@ runs:
         errors: true
         payload: |
           channel: ${{ inputs.slack-channel-id }}
-          ${{ inputs.slack-ts && 'ts: ${{ inputs.slack-ts }}' || '' }}
+          ${{ inputs.slack-ts && 'ts: ' + inputs.slack-ts || '' }}
           text: "Deployment finished! :rocket:"
           attachments:
             - color: ${{ inputs.slack-ts && '"28a745"' || '"dbab09"' }}
