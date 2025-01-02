@@ -5,6 +5,12 @@ inputs:
     description: "Who to greet"
     required: true
     default: "World"
+  slack-bot-token:
+    description: "Slack bot token"
+    required: true
+  slack-channel-id:
+    description: "Slack channel id"
+    required: true
 outputs:
   random-number:
     description: "Random number"
@@ -32,3 +38,36 @@ runs:
     - name: Run goodbye.sh
       run: goodbye.sh
       shell: bash
+
+    - name: Initiate the deployment launch sequence
+      id: launch_sequence
+      uses: slackapi/slack-github-action@v2.0.0
+      with:
+        method: chat.postMessage
+        errors: true
+        token: ${{ inputs.slack-bot-token }}
+        payload: |
+          channel: ${{ inputs.slack-channel-id }}
+          text: "Deployment started :eyes:"
+          attachments:
+            - color: "dbab09"
+              fields:
+                - title: "Status"
+                  short: true
+                  value: "In Progress"
+
+    - name: Update the original message with success
+      uses: slackapi/slack-github-action@v2.0.0
+      with:
+        method: chat.update
+        token: ${{ inputs.slack-bot-token }}
+        payload: |
+          channel: ${{ inputs.slack-channel-id }}
+          ts: "${{ steps.launch_sequence.outputs.ts }}"
+          text: "Deployment finished! :rocket:"
+          attachments:
+            - color: "28a745"
+              fields:
+                - title: "Status"
+                  short: true
+                  value: "Completed"
