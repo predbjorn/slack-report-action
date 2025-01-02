@@ -1,7 +1,7 @@
 name: "Hello World"
 description: "Greet someone"
 inputs:
-  who-to-greet: # id of input
+  who-to-greet:
     description: "Who to greet"
     required: true
     default: "World"
@@ -46,37 +46,19 @@ runs:
       run: goodbye.sh
       shell: bash
 
-    - name: Initiate the deployment launch sequence
-      id: launch_sequence
-      if: ${{ inputs.slack-ts == '' }}
-      uses: slackapi/slack-github-action@v2.0.0
-      with:
-        method: chat.postMessage
-        errors: true
-        token: ${{ inputs.slack-bot-token }}
-        payload: |
-          channel: ${{ inputs.slack-channel-id }}
-          text: "Deployment started :eyes:"
-          attachments:
-            - color: "dbab09"
-              fields:
-                - title: "Status"
-                  short: true
-                  value: "In Progress"
-
     - name: Update the original message with success
       uses: slackapi/slack-github-action@v2.0.0
       if: ${{ inputs.slack-ts }}
       with:
-        method: chat.update
+        method: ${{ inputs.slack-ts && 'chat.update' || 'chat.postMessage' }}
         token: ${{ inputs.slack-bot-token }}
         payload: |
           channel: ${{ inputs.slack-channel-id }}
-          ts: "${{ inputs.slack-ts }}"
+          ${{ inputs.slack-ts && 'ts: "${{ inputs.slack-ts }}"' || '' }}
           text: "Deployment finished! :rocket:"
           attachments:
-            - color: "28a745"
+            - color: ${{ inputs.slack-ts && "28a745" || "dbab09" }}
               fields:
                 - title: "Status"
                   short: true
-                  value: "Completed"
+                  value: ${{ inputs.slack-ts && "Completed" || "In Progress" }}
