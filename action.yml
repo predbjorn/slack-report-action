@@ -57,8 +57,8 @@ runs:
           ${{ inputs.slack-ts && 'ts: "${{ inputs.slack-ts }}"' || '' }}
           text: "Deployment finished! :rocket:"
           attachments:
-            - color: ${{ inputs.slack-ts && "28a745" || "dbab09" }}
+            - color: ${{ inputs.slack-ts && '"28a745"' || '"dbab09"' }}
               fields:
                 - title: "Status"
                   short: true
-                  value: ${{ inputs.slack-ts && "Completed" || "In Progress" }}
+                  value: ${{ inputs.slack-ts && '"Completed"' || '"In Progress"' }}
