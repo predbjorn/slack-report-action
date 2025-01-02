@@ -56,10 +56,39 @@ runs:
         payload: |
           channel: ${{ inputs.slack-channel-id }}
           ${{ inputs.slack-ts && format('ts: {0}', inputs.slack-ts) || '' }}
-          text: "Deployment finished! :rocket:"
+          text: ":nors: Deployment ${{ inputs.slack-ts && '"completed"' || '"in Progress"' }}"
           attachments:
             - color: ${{ inputs.slack-ts && '"28a745"' || '"dbab09"' }}
-              fields:
-                - title: "Status"
-                  short: true
-                  value: ${{ inputs.slack-ts && '"Completed"' || '"In Progress"' }}
+              blocks: 
+                - type": "section",
+                  text: 
+                    type: "mrkdwn",
+                    text: ":nors: Deployment in progress"
+                - type: "section"
+                  text: 
+                    type: "mrkdwn"
+                    text: "*Branch:* feature/DEV-3077-deploy-2"
+                - type: "section"
+                
+                - fields: 
+                  - type: "mrkdwn"
+                    text: "*Version:* 1.0.4"
+                  - type: "mrkdwn"
+                    text: "<https://example.com|GitHub Action>"
+                - type: "divider"
+                - type: "section"
+                  fields: 
+                    - type: "mrkdwn"
+                      text: ":octagonal_sign: *Android:*"
+                    - type: "mrkdwn"
+                      text: "*Build time:* 53min"
+                - type: "section"
+                  fields: 
+                    - type: "mrkdwn"
+                      text: ":octagonal_sign: *iOS:*"
+                    - type: "mrkdwn"
+                      text: "*Build time:* 53min"
+                - type: "section"
+                  text: 
+                    type: "mrkdwn"
+                    text: ":octagonal_sign: :boom: :rocket: :white_check_mark: :heavy_multiplication_x: iOS:"
