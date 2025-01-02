@@ -47,8 +47,8 @@ runs:
       shell: bash
 
     - name: Update the original message with success
+      id: launch_sequence
       uses: slackapi/slack-github-action@v2.0.0
-      if: ${{ inputs.slack-ts }}
       with:
         method: ${{ inputs.slack-ts && 'chat.update' || 'chat.postMessage' }}
         token: ${{ inputs.slack-bot-token }}
