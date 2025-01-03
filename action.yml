@@ -88,20 +88,22 @@ runs:
                     - type: "mrkdwn"
                       text: "*Version:* 1.0.4"
                     - type: "mrkdwn"
-                      text: "<https://example.com|GitHub Action>"
+                      text: "<https://example.com|Jira>"
                 - type: "section"
                   fields: 
                     - type: "mrkdwn"
                       text: "${{ steps.initVars.outputs.ANDROID_STATUS_ICON }} *Android*"
                     - type: "mrkdwn"
-                      text: "${{ inputs.android-build-time && format('Android Build Time: {0}', inputs.android-build-time) || 'Building ...' }}"
+                      text: "${{ inputs.android-build-time && format('Android Build Time: {0}min', inputs.android-build-time) || 'Building ...' }}"
                 - type: "section"
                   fields: 
                     - type: "mrkdwn"
                       text: "${{ steps.initVars.outputs.IOS_STATUS_ICON }} *iOS*"
                     - type: "mrkdwn"
-                      text: "${{ inputs.ios-build-time && format('iOS Build Time: {0}', inputs.ios-build-time) || 'Building ...' }}"
+                      text: "${{ inputs.ios-build-time && format('iOS Build Time: {0}min', inputs.ios-build-time) || 'Building ...' }}"
                 - type: "section"
-                  text: 
-                    type: "mrkdwn"
-                    text: "*Branch:* ${{ inputs.branch }}"
+                  fields: 
+                    - type: "mrkdwn"
+                      text: "*Branch:*\n${{ inputs.branch }}"
+                    - type: "mrkdwn"
+                      text: "<https://example.com|GitHub Action>"
