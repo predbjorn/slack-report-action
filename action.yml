@@ -46,7 +46,7 @@ outputs:
 runs:
   using: "composite"
   steps:
-    - name: Run goodbye.sh
+    - name: Create variables for next job
       run: setVariables.sh
       id: initVars
       shell: bash
@@ -66,8 +66,8 @@ runs:
               blocks:
                 - type: "section"
                   text: 
-					type: "mrkdwn"
-					text: ":nors: Deployment ${{ steps.initVars.outputs.STATUS_TEXT }}"
+                    type: "mrkdwn"
+                    text: ":nors: Deployment ${{ steps.initVars.outputs.STATUS_TEXT }}"
                 - type: "section"
                   text: 
                     type: "mrkdwn"
