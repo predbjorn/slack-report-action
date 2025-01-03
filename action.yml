@@ -48,7 +48,7 @@ runs:
   steps:
     - name: Create variables for next job
       run: |
-	    STATUS=$(
+        STATUS=$(
           if [[ "${{ inputs.android-status }}" == "success" && "${{ inputs.ios-status }}" == "success" ]]; then
             echo "success"
           elif [[ "${{ inputs.android-status }}" == "fail" && "${{ inputs.ios-status }}" == "fail" ]]; then
