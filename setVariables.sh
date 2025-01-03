@@ -72,7 +72,12 @@ ANDROID_BUILD_TIME=$(
 		fi
 	else
 		if [[ $ANDROID_BUILD_TIME == "" ]]; then
-			echo ":heavy_multiplication_x:"
+			if [[ "$STATUS" == "success" ]]; then
+				echo ":heavy_check_mark:"
+			else 
+				echo ":heavy_multiplication_x:"
+			fi
+			echo 
 		else
 			echo "Time used: $ANDROID_BUILD_TIME"
 		fi
@@ -87,7 +92,11 @@ IOS_BUILD_TIME=$(
 		fi
 	else
 		if [[ $IOS_BUILD_TIME == "" ]]; then
-			echo ":heavy_multiplication_x:"
+			if [[ "$STATUS" == "success" ]]; then
+				echo ":heavy_check_mark:"
+			else 
+				echo ":heavy_multiplication_x:"
+			fi
 		else
 			echo "Time used: $IOS_BUILD_TIME"
 		fi
