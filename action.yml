@@ -47,11 +47,11 @@ runs:
   using: "composite"
   steps:
     - name: Run goodbye.sh
-      run: ./goodbye.sh
+      run: bash goodbye.sh
       shell: bash
 
     - name: Create variables for next job
-      run: ./setVariables.sh
+      run: bash setVariables.sh
       id: initVars
       shell: bash
 
