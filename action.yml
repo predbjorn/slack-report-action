@@ -91,19 +91,21 @@ runs:
         payload: |
           channel: ${{ inputs.slack-channel-id }}
           ${{ inputs.slack-ts && format('ts: {0}', inputs.slack-ts) || '' }}
+          text: ":nors: *Deployment ${{ steps.initVars.outputs.STATUS_TEXT }}*"
           attachments:
             - color: ${{ steps.initVars.outputs.STATUS_TEXT }}
               blocks:
                 - type: "section"
                   text: 
                     type: "mrkdwn"
-                    text: ":nors: Deployment ${{ steps.initVars.outputs.STATUS_TEXT }}"
+                    text: ":nors: *Deployment ${{ steps.initVars.outputs.STATUS_TEXT }}*"
                 - type: "section"
                   fields: 
                     - type: "mrkdwn"
-                      text: "*Version:*\n1.0.4"
+                      text: "*Version:* 1.0.4"
                     - type: "mrkdwn"
-                      text: "*To test:*\n${{ inputs.jira-url && format('<{0}|Jira>', inputs.jira-url) || 'Generating ...' }}"
+                      text: "*To test:* ${{ inputs.jira-url && format('<{0}|Jira>', inputs.jira-url) || 'Generating ...' }}"
+                - type: "divider"
                 - type: "section"
                   fields: 
                     - type: "mrkdwn"
@@ -116,6 +118,7 @@ runs:
                       text: "${{ steps.initVars.outputs.IOS_STATUS_ICON }} *iOS*"
                     - type: "mrkdwn"
                       text: "${{ steps.initVars.outputs.IOS_BUILD_TIME }}"
+                - type: "divider"
                 - type: "section"
                   fields: 
                     - type: "mrkdwn"
