@@ -37,8 +37,7 @@ inputs:
     default: ""
   branch:
     description: ""
-    required: false
-    default: ""
+    required: true
 outputs:
   ts:
     description: "Slack message timestamp"
@@ -93,17 +92,17 @@ runs:
                 - type: "section"
                   fields: 
                     - type: "mrkdwn"
-                      text: "${{ steps.initVars.outputs.ANDROID_STATUS_ICON }} *Android:*"
+                      text: "${{ steps.initVars.outputs.ANDROID_STATUS_ICON }} *Android*"
                     - type: "mrkdwn"
-                      text: "*Build time:* 53min"
+                      text: ${{ inputs.android-build-time && format('*Build time:* {0}', inputs.android-build-time) || '' }} 
                 - type: "section"
                   fields: 
                     - type: "mrkdwn"
-                      text: "${{ steps.initVars.outputs.IOS_STATUS_ICON }} *iOS:*"
+                      text: "${{ steps.initVars.outputs.IOS_STATUS_ICON }} *iOS*"
                     - type: "mrkdwn"
-                      text: "*Build time:* 53min"
+                      text: ${{ inputs.ios-build-time && format('*Build time:* {0}', inputs.ios-build-time) || '' }} 
                 - type: "divider"
                 - type: "section"
                   text: 
                     type: "mrkdwn"
-                    text: "*Branch:* feature/DEV-3077-deploy-2"
+                    text: "*Branch:* ${{ inputs.branch }}"
