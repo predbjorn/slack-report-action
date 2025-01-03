@@ -47,8 +47,8 @@ runs:
   using: "composite"
   steps:
 	- name: Create variables for next job
+      run: setVariables.sh
       id: initVars
-      run: setVariable.sh
       shell: bash
 
     - name: Send or update slack message
