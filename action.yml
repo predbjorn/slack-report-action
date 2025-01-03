@@ -97,7 +97,7 @@ runs:
                   fields: 
                     - type: "mrkdwn"
                       text: "${{ steps.initVars.outputs.IOS_STATUS_ICON }} *iOS*"
-                    ${{ inputs.ios-build-time && - type: "mrkdwn" || '' }}
+                    ${{ inputs.ios-build-time && '- type: "mrkdwn"' || '' }}
                       "${{ inputs.ios-build-time && format('text: iOS Build Time: {0}', inputs.ios-build-time) || '' }}"
                 - type: "section"
                   text: 
