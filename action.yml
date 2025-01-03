@@ -49,7 +49,7 @@ runs:
     - name: Run goodbye.sh
       run: goodbye.sh
       shell: bash
-	  
+
 	- name: Create variables for next job
       run: ./setVariables.sh
       id: initVars
