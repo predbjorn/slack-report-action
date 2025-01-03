@@ -63,11 +63,43 @@ STATUS_COLOR=$(
 		echo "#A1A1A1"
 	fi
 )
+ANDROID_BUILD_TIME=$(
+	if [[ "$ANDROID_STATUS" == "start" ]]; then
+		if [[ $ANDROID_ETA == "" ]]; then
+			echo "Building ..."
+		else
+			echo "ETA: $ANDROID_ETA"
+		fi
+	else
+		if [[ $ANDROID_BUILD_TIME == "" ]]; then
+			echo ":heavy_multiplication_x:"
+		else
+			echo "Time used: $ANDROID_BUILD_TIME"
+		fi
+	fi
+)
+IOS_BUILD_TIME=$(
+	if [[ "$IOS_STATUS" == "start" ]]; then
+		if [[ $IOS_ETA == "" ]]; then
+			echo "Building ..."
+		else
+			echo "ETA: $IOS_ETA"
+		fi
+	else
+		if [[ $IOS_BUILD_TIME == "" ]]; then
+			echo ":heavy_multiplication_x:"
+		else
+			echo "Time used: $IOS_BUILD_TIME"
+		fi
+	fi
+)
 echo "STATUS=$STATUS" >> $GITHUB_OUTPUT
 echo "STATUS_TEXT=$STATUS_TEXT" >> $GITHUB_OUTPUT
 echo "STATUS_COLOR=$STATUS_COLOR" >> $GITHUB_OUTPUT
 echo "IOS_STATUS_ICON=$IOS_STATUS_ICON" >> $GITHUB_OUTPUT
 echo "ANDROID_STATUS_ICON=$ANDROID_STATUS_ICON" >> $GITHUB_OUTPUT
+echo "ANDROID_BUILD_TIME=$ANDROID_BUILD_TIME" >> $GITHUB_OUTPUT
+echo "IOS_BUILD_TIME=$IOS_BUILD_TIME" >> $GITHUB_OUTPUT
 echo "Latest Version Name: $STATUS"
 echo "Latest Version Code: $STATUS_TEXT"
 echo "Latest Version Code: $STATUS_COLOR"

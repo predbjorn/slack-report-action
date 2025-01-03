@@ -27,6 +27,14 @@ inputs:
     description: ""
     required: false
     default: ""
+  android-eta:
+    description: ""
+    required: false
+    default: ""
+  ios-eta:
+    description: ""
+    required: false
+    default: ""
   github-action-url:
     description: ""
     required: true
@@ -69,6 +77,9 @@ runs:
         GITHUB_ACTION_URL: ${{ inputs.github-action-url }}
         VERSION_NR: ${{ inputs.version-nr }}
         BRANCH: ${{ inputs.branch }}
+        JIRA_URL: ${{ inputs.jira-url }}
+        ANDROID_ETA: ${{ inputs.android-eta }}
+        IOS_ETA: ${{ inputs.ios-eta }}
 
     - name: Send or update slack message
       id: launch_sequence
@@ -98,13 +109,13 @@ runs:
                     - type: "mrkdwn"
                       text: "${{ steps.initVars.outputs.ANDROID_STATUS_ICON }} *Android*"
                     - type: "mrkdwn"
-                      text: "${{ inputs.android-build-time && format('Android Build Time: {0}min', inputs.android-build-time) || 'Building ...' }}"
+                      text: "${{ steps.initVars.outputs.ANDROID_BUILD_TIME }}"
                 - type: "section"
                   fields: 
                     - type: "mrkdwn"
                       text: "${{ steps.initVars.outputs.IOS_STATUS_ICON }} *iOS*"
                     - type: "mrkdwn"
-                      text: "${{ inputs.ios-build-time && format('iOS Build Time: {0}min', inputs.ios-build-time) || 'Building ...' }}"
+                      text: "${{ steps.initVars.outputs.IOS_BUILD_TIME }}"
                 - type: "section"
                   fields: 
                     - type: "mrkdwn"
