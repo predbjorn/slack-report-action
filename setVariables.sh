@@ -13,6 +13,32 @@ STATUS=$(
 )
 echo "Latest Version Name: $STATUS"
 
+ANDROID_STATUS_ICON=$(
+	if [[ "$ANDROID_STATUS" == "start" ]]; then
+		echo ":rocket:"
+	elif [[ "$ANDROID_STATUS" == "success" ]]; then
+		echo ":white_check_mark:"
+	elif [[ "$ANDROID_STATUS" == "fail" ]]; then
+		echo ":octagonal_sign:"
+	elif [[ "$ANDROID_STATUS" == "cancel" ]]; then
+		echo ":heavy_multiplication_x:"
+	else
+		echo ":boom:"
+	fi
+)
+IOS_STATUS_ICON=$(
+	if [[ "$IOS_STATUS" == "start" ]]; then
+		echo ":rocket:"
+	elif [[ "$IOS_STATUS" == "success" ]]; then
+		echo ":white_check_mark:"
+	elif [[ "$IOS_STATUS" == "fail" ]]; then
+		echo ":octagonal_sign:"
+	elif [[ "$IOS_STATUS" == "cancel" ]]; then
+		echo ":heavy_multiplication_x:"
+	else
+		echo ":boom:"
+	fi
+)
 STATUS_TEXT=$(
 	if [[ "$STATUS" == "start" ]]; then
 		echo "in progress"
@@ -28,18 +54,20 @@ STATUS_TEXT=$(
 )
 STATUS_COLOR=$(
 	if [[ "$STATUS" == "start" ]]; then
-		echo "28a745"
+		echo "#28a745"
 	elif [[ "$STATUS" == "success" ]]; then
-		echo "dbab09"
+		echo "#dbab09"
 	elif [[ "$STATUS" == "fail" ]]; then
-		echo "000000"
+		echo "#000000"
 	elif [[ "$STATUS" == "cancel" ]]; then
-		echo "A1A1A1"
+		echo "#A1A1A1"
 	fi
 )
 echo "STATUS=$STATUS" >> $GITHUB_OUTPUT
 echo "STATUS_TEXT=$STATUS_TEXT" >> $GITHUB_OUTPUT
 echo "STATUS_COLOR=$STATUS_COLOR" >> $GITHUB_OUTPUT
+echo "IOS_STATUS_ICON=$IOS_STATUS_ICON" >> $GITHUB_OUTPUT
+echo "ANDROID_STATUS_ICON=$ANDROID_STATUS_ICON" >> $GITHUB_OUTPUT
 echo "Latest Version Name: $STATUS"
 echo "Latest Version Code: $STATUS_TEXT"
 echo "Latest Version Code: $STATUS_COLOR"
