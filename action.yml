@@ -48,18 +48,18 @@ runs:
   steps:
     - name: Create variables for next job
       run: goodbye.sh
-	  shell: bash
-	  id: initVars
-	  env:
-		SLACK_BOT_TOKEN: ${{ inputs.slack-bot-token }}
-		SLACK_CHANNEL_ID: ${{ inputs.slack-channel-id }}
-		ANDROID_STATUS: ${{ inputs.android-status }}
-		IOS_STATUS: ${{ inputs.ios-status }}
-		ANDROID_BUILD_TIME: ${{ inputs.android-build-time }}
-		IOS_BUILD_TIME: ${{ inputs.ios-build-time }}
-		GITHUB_ACTION_URL: ${{ inputs.github-action-url }}
-		VERSION_NR: ${{ inputs.version-nr }}
-		BRANCH: ${{ inputs.branch }}
+      shell: bash
+      id: initVars
+      env:
+        SLACK_BOT_TOKEN: ${{ inputs.slack-bot-token }}
+        SLACK_CHANNEL_ID: ${{ inputs.slack-channel-id }}
+        ANDROID_STATUS: ${{ inputs.android-status }}
+        IOS_STATUS: ${{ inputs.ios-status }}
+        ANDROID_BUILD_TIME: ${{ inputs.android-build-time }}
+        IOS_BUILD_TIME: ${{ inputs.ios-build-time }}
+        GITHUB_ACTION_URL: ${{ inputs.github-action-url }}
+        VERSION_NR: ${{ inputs.version-nr }}
+        BRANCH: ${{ inputs.branch }}
 
     - name: Send or update slack message
       id: launch_sequence
