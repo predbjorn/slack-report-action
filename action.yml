@@ -41,7 +41,7 @@ inputs:
   jira-url:
     description: ""
     required: false
-	default: ""
+    default: ""
   github-action-url:
     description: ""
     required: true
