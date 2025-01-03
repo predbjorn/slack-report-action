@@ -59,7 +59,7 @@ runs:
           attachments:
             - color: ${{ inputs.slack-ts && '"28a745"' || '"dbab09"' }}
               blocks:
-                - type": "section"
+                - type: "section"
                   text: 
                     type: "mrkdwn"
                     text: ":nors: Deployment ${{ inputs.slack-ts && '"completed"' || '"in Progress"' }}"
@@ -69,10 +69,10 @@ runs:
                     text: "*Branch:* feature/DEV-3077-deploy-2"
                 - type: "section"
                   fields: 
-                  - type: "mrkdwn"
-                    text: "*Version:* 1.0.4"
-                  - type: "mrkdwn"
-                    text: "<https://example.com|GitHub Action>"
+                    - type: "mrkdwn"
+                      text: "*Version:* 1.0.4"
+                    - type: "mrkdwn"
+                      text: "<https://example.com|GitHub Action>"
                 - type: "divider"
                 - type: "section"
                   fields: 
