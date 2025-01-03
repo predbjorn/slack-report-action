@@ -92,7 +92,7 @@ runs:
                     - type: "mrkdwn"
                       text: "*Version:*\n1.0.4"
                     - type: "mrkdwn"
-                      text: "${{ inputs.jira-url && format('*What to test:* <{0}|Jira>', inputs.jira-url) || 'Generating ...' }}"
+                      text: "*To test:*\n${{ inputs.jira-url && format('<{0}|Jira>', inputs.jira-url) || 'Generating ...' }}"
                 - type: "section"
                   fields: 
                     - type: "mrkdwn"
