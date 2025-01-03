@@ -102,8 +102,8 @@ runs:
                       text: "${{ steps.initVars.outputs.IOS_STATUS_ICON }} *iOS:*"
                     - type: "mrkdwn"
                       text: "*Build time:* 53min"
-                  - type: "divider"
-                  - type: "section"
-                    text: 
-                      type: "mrkdwn"
-                      text: "*Branch:* feature/DEV-3077-deploy-2"
+                - type: "divider"
+                - type: "section"
+                  text: 
+                    type: "mrkdwn"
+                    text: "*Branch:* feature/DEV-3077-deploy-2"
