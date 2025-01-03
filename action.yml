@@ -38,6 +38,13 @@ inputs:
   branch:
     description: ""
     required: true
+  jira-url:
+    description: ""
+    required: false
+	default: ""
+  github-action-url:
+    description: ""
+    required: true
 outputs:
   ts:
     description: "Slack message timestamp"
@@ -86,9 +93,9 @@ runs:
                 - type: "section"
                   fields: 
                     - type: "mrkdwn"
-                      text: "*Version:* 1.0.4"
+                      text: "*Version:*\n1.0.4"
                     - type: "mrkdwn"
-                      text: "<https://example.com|Jira>"
+                      text: "${{ inputs.jira-url && format('*What to test:* <{0}|Jira>', inputs.jira-url) || 'Generating ...' }}"
                 - type: "section"
                   fields: 
                     - type: "mrkdwn"
@@ -106,4 +113,4 @@ runs:
                     - type: "mrkdwn"
                       text: "*Branch:*\n${{ inputs.branch }}"
                     - type: "mrkdwn"
-                      text: "<https://example.com|GitHub Action>"
+                      text: "*Developer info:*\n<${{ inputs.github-action-url }}|GitHub Action>"
