@@ -50,7 +50,7 @@ runs:
       run: goodbye.sh
       shell: bash
 
-	- name: Create variables for next job
+    - name: Create variables for next job
       run: ./setVariables.sh
       id: initVars
       shell: bash
