@@ -1,107 +1,34 @@
 name: "Hello World"
 description: "Greet someone"
 inputs:
-  slack-bot-token:
-    description: "Slack bot token"
+  slack-channel-id: # id of input
+    description: "Who to greet"
     required: true
-  slack-channel-id:
-    description: "Slack channel id"
-    required: true
-  slack-ts:
-    description: "update slack message"
-    required: false
-    default: ""
-  android-status:
-    description: "[start|success|fail|cancel]"
-    required: false
-    default: "start"
-  ios-status:
-    description: "[start|success|fail|cancel]"
-    required: false
-    default: "start"
-  android-build-time:
-    description: ""
-    required: false
-    default: ""
-  ios-build-time:
-    description: ""
-    required: false
-    default: ""
-  github-action-url:
-    description: ""
-    required: false
-    default: ""
-  version-nr:
-    description: ""
-    required: false
-    default: ""
-  branch:
-    description: ""
-    required: false
-    default: ""
+    default: "World"
 outputs:
-  ts:
-    description: "Slack message timestamp"
-    value: ${{ steps.launch_sequence.outputs.ts }}
+  random-number:
+    description: "Random number"
+    value: ${{ steps.random-number-generator.outputs.random-number }}
 runs:
   using: "composite"
   steps:
-    - name: Create variables for next job
+    - name: Set Greeting
+      run: echo "Hello $INPUT_WHO_TO_GREET."
+      shell: bash
+      env:
+        INPUT_WHO_TO_GREET: ${{ inputs.who-to-greet }}
+
+    - name: Random Number Generator
+      id: random-number-generator
+      run: echo "random-number=$(echo $RANDOM)" >> $GITHUB_OUTPUT
+      shell: bash
+
+    - name: Set GitHub Path
+      run: echo "$GITHUB_ACTION_PATH" >> $GITHUB_PATH
+      shell: bash
+      env:
+        GITHUB_ACTION_PATH: ${{ github.action_path }}
+
+    - name: Run goodbye.sh
       run: goodbye.sh
       shell: bash
-      id: initVars
-      env:
-        SLACK_BOT_TOKEN: ${{ inputs.slack-bot-token }}
-        SLACK_CHANNEL_ID: ${{ inputs.slack-channel-id }}
-        ANDROID_STATUS: ${{ inputs.android-status }}
-        IOS_STATUS: ${{ inputs.ios-status }}
-        ANDROID_BUILD_TIME: ${{ inputs.android-build-time }}
-        IOS_BUILD_TIME: ${{ inputs.ios-build-time }}
-        GITHUB_ACTION_URL: ${{ inputs.github-action-url }}
-        VERSION_NR: ${{ inputs.version-nr }}
-        BRANCH: ${{ inputs.branch }}
-
-    - name: Send or update slack message
-      id: launch_sequence
-      uses: slackapi/slack-github-action@v2.0.0
-      with:
-        method: ${{ inputs.slack-ts && 'chat.update' || 'chat.postMessage' }}
-        token: ${{ inputs.slack-bot-token }}
-        errors: true
-        payload: |
-          channel: ${{ inputs.slack-channel-id }}
-          ${{ inputs.slack-ts && format('ts: {0}', inputs.slack-ts) || '' }}
-          attachments:
-            - color: ${{ steps.initVars.outputs.STATUS_TEXT }}
-              blocks:
-                - type: "section"
-                  text: 
-                    type: "mrkdwn"
-                    text: ":nors: Deployment ${{ steps.initVars.outputs.STATUS_TEXT }}"
-                - type: "section"
-                  text: 
-                    type: "mrkdwn"
-                    text: "*Branch:* feature/DEV-3077-deploy-2"
-                - type: "section"
-                  fields: 
-                    - type: "mrkdwn"
-                      text: "*Version:* 1.0.4"
-                    - type: "mrkdwn"
-                      text: "<https://example.com|GitHub Action>"
-                - type: "divider"
-                - type: "section"
-                  fields: 
-                    - type: "mrkdwn"
-                      text: ":octagonal_sign: *Android:*"
-                    - type: "mrkdwn"
-                      text: "*Build time:* 53min"
-                - type: "section"
-                  fields: 
-                    - type: "mrkdwn"
-                      text: ":octagonal_sign: *iOS:*"
-                    - type: "mrkdwn"
-                      text: "*Build time:* 53min"
-                - type: "section"
-                  text: 
-                    type: "mrkdwn"
-                    text: ":octagonal_sign: :boom: :rocket: :white_check_mark: :heavy_multiplication_x: iOS:"
