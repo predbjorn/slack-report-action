@@ -47,7 +47,7 @@ runs:
   using: "composite"
   steps:
     - name: Create variables for next job
-      run: setVariables.sh
+      run: ./setVariables.sh
       id: initVars
       shell: bash
 
