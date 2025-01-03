@@ -68,8 +68,7 @@ runs:
                     type: "mrkdwn"
                     text: "*Branch:* feature/DEV-3077-deploy-2"
                 - type: "section"
-                
-                - fields: 
+                  fields: 
                   - type: "mrkdwn"
                     text: "*Version:* 1.0.4"
                   - type: "mrkdwn"
