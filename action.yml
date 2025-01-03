@@ -72,7 +72,7 @@ runs:
       with:
         method: ${{ inputs.slack-ts && 'chat.update' || 'chat.postMessage' }}
         token: ${{ inputs.slack-bot-token }}
-        errors: false
+        errors: true
         payload: |
           channel: ${{ inputs.slack-channel-id }}
           ${{ inputs.slack-ts && format('ts: {0}', inputs.slack-ts) || '' }}
