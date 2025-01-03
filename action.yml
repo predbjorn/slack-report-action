@@ -57,10 +57,10 @@ runs:
       shell: bash
       id: initVars
       env:
-        SLACK_BOT_TOKEN: ${{ inputs.slack-bot-token }}
-        SLACK_CHANNEL_ID: ${{ inputs.slack-channel-id }}
         ANDROID_STATUS: ${{ inputs.android-status }}
         IOS_STATUS: ${{ inputs.ios-status }}
+        SLACK_BOT_TOKEN: ${{ inputs.slack-bot-token }}
+        SLACK_CHANNEL_ID: ${{ inputs.slack-channel-id }}
         ANDROID_BUILD_TIME: ${{ inputs.android-build-time }}
         IOS_BUILD_TIME: ${{ inputs.ios-build-time }}
         GITHUB_ACTION_URL: ${{ inputs.github-action-url }}

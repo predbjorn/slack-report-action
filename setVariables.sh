@@ -1,9 +1,9 @@
 STATUS=$(
-  if [[ "${{ inputs.android-status }}" == "success" && "${{ inputs.ios-status }}" == "success" ]]; then
+  if [[ "${{ env.ANDROID_STATUS }}" == "success" && "${{ env.IOS_STATUS }}" == "success" ]]; then
     echo "success"
-  elif [[ "${{ inputs.android-status }}" == "fail" && "${{ inputs.ios-status }}" == "fail" ]]; then
+  elif [[ "${{ env.ANDROID_STATUS }}" == "fail" && "${{ env.IOS_STATUS }}" == "fail" ]]; then
     echo "fail"
-  elif [[ "${{ inputs.android-status }}" == "cancel" && "${{ inputs.ios-status }}" == "cancel" ]]; then
+  elif [[ "${{ env.ANDROID_STATUS }}" == "cancel" && "${{ env.IOS_STATUS }}" == "cancel" ]]; then
     echo "cancel"
   else
     echo "start"
