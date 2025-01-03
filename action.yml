@@ -53,7 +53,7 @@ runs:
         GITHUB_ACTION_PATH: ${{ github.action_path }}
 
     - name: Create variables for next job
-      run: goodbye.sh
+      run: setVariables.sh
       shell: bash
       id: initVars
       env:
