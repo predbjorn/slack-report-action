@@ -96,10 +96,6 @@ runs:
             - color: ${{ steps.initVars.outputs.STATUS_TEXT }}
               blocks:
                 - type: "section"
-                  text: 
-                    type: "mrkdwn"
-                    text: ":nors: *Deployment ${{ steps.initVars.outputs.STATUS_TEXT }}*"
-                - type: "section"
                   fields: 
                     - type: "mrkdwn"
                       text: "*Version:* 1.0.4"
