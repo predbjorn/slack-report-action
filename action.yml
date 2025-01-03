@@ -93,12 +93,14 @@ runs:
                   fields: 
                     - type: "mrkdwn"
                       text: "${{ steps.initVars.outputs.ANDROID_STATUS_ICON }} *Android*"
+                    - type: "mrkdwn"
+                      text: "${{ inputs.android-build-time && format('Android Build Time: {0}', inputs.android-build-time) || 'Building ...' }}"
                 - type: "section"
                   fields: 
                     - type: "mrkdwn"
                       text: "${{ steps.initVars.outputs.IOS_STATUS_ICON }} *iOS*"
-                    ${{ inputs.ios-build-time && '- type: "mrkdwn"' || '' }}
-                      "${{ inputs.ios-build-time && format('text: iOS Build Time: {0}', inputs.ios-build-time) || '' }}"
+                    - type: "mrkdwn"
+                      text: "${{ inputs.ios-build-time && format('iOS Build Time: {0}', inputs.ios-build-time) || 'Building ...' }}"
                 - type: "section"
                   text: 
                     type: "mrkdwn"
