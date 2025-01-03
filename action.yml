@@ -46,12 +46,13 @@ outputs:
 runs:
   using: "composite"
   steps:
+    - uses: actions/checkout@v4
     - name: Run goodbye.sh
-      run: bash goodbye.sh
+      run: goodbye.sh
       shell: bash
 
     - name: Create variables for next job
-      run: bash setVariables.sh
+      run: setVariables.sh
       id: initVars
       shell: bash
 
