@@ -1,3 +1,5 @@
+echo "Latest Version Code: $ANDROID_STATUS"
+echo "Latest Version Code: $IOS_STATUS"
 STATUS=$(
   if [[ $ANDROID_STATUS == "success" && $IOS_STATUS == "success" ]]; then
     echo "success"
@@ -9,21 +11,31 @@ STATUS=$(
     echo "start"
   fi
 )
+echo "Latest Version Name: $STATUS"
+
 STATUS_TEXT=$(
-  case "$STATUS" in
-    start) echo "in progress" ;;
-    success) echo "succeeded" ;;
-    fail) echo "failed" ;;
-    cancel) echo "canceled" ;;
-  esac
+	if [[ "$STATUS" == "start" ]]; then
+		echo "in progress"
+	elif [[ "$STATUS" == "success" ]]; then
+		echo "succeeded"
+	elif [[ "$STATUS" == "fail" ]]; then
+		echo "failed"
+	elif [[ "$STATUS" == "cancel" ]]; then
+		echo "canceled"
+	else
+		echo "is unknown"
+	fi
 )
 STATUS_COLOR=$(
-  case "$STATUS" in
-    start) echo "28a745" ;;
-    success) echo "dbab09" ;;
-    fail) echo "000000" ;;
-    cancel) echo "A1A1A1" ;;
-  esac
+	if [[ "$STATUS" == "start" ]]; then
+		echo "28a745"
+	elif [[ "$STATUS" == "success" ]]; then
+		echo "dbab09"
+	elif [[ "$STATUS" == "fail" ]]; then
+		echo "000000"
+	elif [[ "$STATUS" == "cancel" ]]; then
+		echo "A1A1A1"
+	fi
 )
 echo "STATUS=$STATUS" >> $GITHUB_OUTPUT
 echo "STATUS_TEXT=$STATUS_TEXT" >> $GITHUB_OUTPUT
