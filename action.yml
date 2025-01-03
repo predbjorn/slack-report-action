@@ -57,12 +57,12 @@ runs:
           channel: ${{ inputs.slack-channel-id }}
           ${{ inputs.slack-ts && format('ts: {0}', inputs.slack-ts) || '' }}
           attachments:
-            - color: ${{ inputs.slack-ts && '"28a745"' || '"dbab09"' }}
+            - color: ${{ inputs.slack-ts && '28a745' || 'dbab09' }}
               blocks:
                 - type: "section"
                   text: 
                     type: "mrkdwn"
-                    text: ":nors: Deployment ${{ inputs.slack-ts && '"completed"' || '"in Progress"' }}"
+                    text: ":nors: Deployment ${{ inputs.slack-ts && 'completed' || 'in Progress' }}"
                 - type: "section"
                   text: 
                     type: "mrkdwn"
