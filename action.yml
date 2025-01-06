@@ -98,7 +98,7 @@ runs:
                 - type: "section"
                   fields: 
                     - type: "mrkdwn"
-                      text: "*Version:* ${{ inputs.version-nr && format('{0}', inputs.version-nr) || 'Generating ...' }}""
+                      text: "*Version:* ${{ inputs.version-nr && format('{0}', inputs.version-nr) || 'Generating ...' }}"
                     - type: "mrkdwn"
                       text: "*To test:* ${{ inputs.jira-url && format('<{0}|Jira>', inputs.jira-url) || 'Generating ...' }}"
                 - type: "divider"
