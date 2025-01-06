@@ -3,10 +3,10 @@ echo "Latest Version Code: $IOS_STATUS"
 STATUS=$(
   if [[ $ANDROID_STATUS == "success" && $IOS_STATUS == "success" ]]; then
     echo "success"
-  elif [[ $ANDROID_STATUS == "fail" && $IOS_STATUS == "fail" ]]; then
-    echo "fail"
-  elif [[ $ANDROID_STATUS == "cancel" && $IOS_STATUS == "cancel" ]]; then
-    echo "cancel"
+  elif [[ $ANDROID_STATUS == "failure" && $IOS_STATUS == "failure" ]]; then
+    echo "failure"
+  elif [[ $ANDROID_STATUS == "skipped" && $IOS_STATUS == "skipped" ]]; then
+    echo "skipped"
   else
     echo "start"
   fi
@@ -18,9 +18,9 @@ ANDROID_STATUS_ICON=$(
 		echo ":rocket:"
 	elif [[ "$ANDROID_STATUS" == "success" ]]; then
 		echo ":white_check_mark:"
-	elif [[ "$ANDROID_STATUS" == "fail" ]]; then
+	elif [[ "$ANDROID_STATUS" == "failure" ]]; then
 		echo ":octagonal_sign:"
-	elif [[ "$ANDROID_STATUS" == "cancel" ]]; then
+	elif [[ "$ANDROID_STATUS" == "skipped" ]]; then
 		echo ":heavy_multiplication_x:"
 	else
 		echo ":boom:"
@@ -31,9 +31,9 @@ IOS_STATUS_ICON=$(
 		echo ":rocket:"
 	elif [[ "$IOS_STATUS" == "success" ]]; then
 		echo ":white_check_mark:"
-	elif [[ "$IOS_STATUS" == "fail" ]]; then
+	elif [[ "$IOS_STATUS" == "failure" ]]; then
 		echo ":octagonal_sign:"
-	elif [[ "$IOS_STATUS" == "cancel" ]]; then
+	elif [[ "$IOS_STATUS" == "skipped" ]]; then
 		echo ":heavy_multiplication_x:"
 	else
 		echo ":boom:"
@@ -44,9 +44,9 @@ STATUS_TEXT=$(
 		echo "in progress"
 	elif [[ "$STATUS" == "success" ]]; then
 		echo "succeeded"
-	elif [[ "$STATUS" == "fail" ]]; then
+	elif [[ "$STATUS" == "failure" ]]; then
 		echo "failed"
-	elif [[ "$STATUS" == "cancel" ]]; then
+	elif [[ "$STATUS" == "skipped" ]]; then
 		echo "canceled"
 	else
 		echo "is unknown"
@@ -57,9 +57,9 @@ STATUS_COLOR=$(
 		echo "dbab09"
 	elif [[ "$STATUS" == "success" ]]; then
 		echo "28a745"
-	elif [[ "$STATUS" == "fail" ]]; then
+	elif [[ "$STATUS" == "failure" ]]; then
 		echo "000000"
-	elif [[ "$STATUS" == "cancel" ]]; then
+	elif [[ "$STATUS" == "skipped" ]]; then
 		echo "A1A1A1"
 	fi
 )
