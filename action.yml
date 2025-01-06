@@ -50,6 +50,10 @@ inputs:
     description: ""
     required: false
     default: ""
+  errors:
+    description: ""
+    required: false
+    default: false
 outputs:
   ts:
     description: "Slack message timestamp"
@@ -87,7 +91,7 @@ runs:
       with:
         method: ${{ inputs.slack-ts && 'chat.update' || 'chat.postMessage' }}
         token: ${{ inputs.slack-bot-token }}
-        errors: true
+        errors: ${{ inputs.errors }}
         payload: |
           channel: ${{ inputs.slack-channel-id }}
           ${{ inputs.slack-ts && format('ts: {0}', inputs.slack-ts) || '' }}
