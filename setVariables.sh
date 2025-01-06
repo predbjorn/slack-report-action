@@ -54,13 +54,13 @@ STATUS_TEXT=$(
 )
 STATUS_COLOR=$(
 	if [[ "$STATUS" == "start" ]]; then
-		echo "#28a745"
+		echo "dbab09"
 	elif [[ "$STATUS" == "success" ]]; then
-		echo "#dbab09"
+		echo "28a745"
 	elif [[ "$STATUS" == "fail" ]]; then
-		echo "#000000"
+		echo "000000"
 	elif [[ "$STATUS" == "cancel" ]]; then
-		echo "#A1A1A1"
+		echo "A1A1A1"
 	fi
 )
 ANDROID_BUILD_TIME=$(
