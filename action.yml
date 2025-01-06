@@ -97,14 +97,14 @@ runs:
           ${{ inputs.slack-ts && format('ts: {0}', inputs.slack-ts) || '' }}
           text: ":nors: *Deployment ${{ steps.initVars.outputs.STATUS_TEXT }}*"
           attachments:
-            - color: ${{ steps.initVars.outputs.STATUS_TEXT }}
+            - color: ${{ steps.initVars.outputs.STATUS_COLOR }}
               blocks:
                 - type: "section"
                   fields: 
                     - type: "mrkdwn"
-                      text: "*Version:* ${{ inputs.version-nr && format('{0}', inputs.version-nr) || steps.initVars.outputs.STATUS != 'start' && '' || 'Generating ...' }}"
+                      text: "*Version:* ${{ inputs.version-nr && format('{0}', inputs.version-nr) || steps.initVars.outputs.STATUS != 'start' && '...' || 'Generating ...' }}"
                     - type: "mrkdwn"
-                      text: "*To test:* ${{ inputs.jira-url && format('<{0}|Jira>', inputs.jira-url) ||  steps.initVars.outputs.STATUS != 'start' && '' ||  'Generating ...' }}"
+                      text: "*To test:* ${{ inputs.jira-url && format('<{0}|Jira>', inputs.jira-url) ||  steps.initVars.outputs.STATUS != 'start' && '...' || 'Generating ...' }}"
                 - type: "divider"
                 - type: "section"
                   fields: 

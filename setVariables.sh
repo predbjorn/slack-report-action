@@ -88,7 +88,7 @@ IOS_BUILD_TIME=$(
 		if [[ $IOS_ETA == "" ]]; then
 			echo "Building ..."
 		else
-			echo "ETA: $IOS_ETA"
+			echo "Eta: $IOS_ETA"
 		fi
 	else
 		if [[ $IOS_BUILD_TIME == "" ]]; then
