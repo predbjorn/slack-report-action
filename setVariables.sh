@@ -1,5 +1,3 @@
-echo "Latest Version Code: $ANDROID_STATUS"
-echo "Latest Version Code: $IOS_STATUS"
 STATUS=$(
   if [[ $ANDROID_STATUS == "success" && $IOS_STATUS == "success" ]]; then
     echo "success"
@@ -11,7 +9,6 @@ STATUS=$(
     echo "start"
   fi
 )
-echo "Latest Version Name: $STATUS"
 
 ANDROID_STATUS_ICON=$(
 	if [[ "$ANDROID_STATUS" == "start" ]]; then
@@ -109,6 +106,15 @@ echo "IOS_STATUS_ICON=$IOS_STATUS_ICON" >> $GITHUB_OUTPUT
 echo "ANDROID_STATUS_ICON=$ANDROID_STATUS_ICON" >> $GITHUB_OUTPUT
 echo "ANDROID_BUILD_TIME=$ANDROID_BUILD_TIME" >> $GITHUB_OUTPUT
 echo "IOS_BUILD_TIME=$IOS_BUILD_TIME" >> $GITHUB_OUTPUT
-echo "Latest Version Name: $STATUS"
-echo "Latest Version Code: $STATUS_TEXT"
+echo "STATUS: $STATUS"
+echo "STATUS_TEXT: $STATUS_TEXT"
 echo "Latest Version Code: $STATUS_COLOR"
+echo "IOS_STATUS_ICON: $IOS_STATUS_ICON"
+echo "ANDROID_STATUS_ICON: $ANDROID_STATUS_ICON"
+echo "ANDROID_BUILD_TIME: $ANDROID_BUILD_TIME"
+echo "IOS_BUILD_TIME: $IOS_BUILD_TIME"
+echo "VERSION_NR: $VERSION_NR"
+echo "ANDROID_ETA: $ANDROID_ETA"
+echo "IOS_ETA: $IOS_ETA"
+echo "JIRA_URL: $JIRA_URL"
+echo "Variables set successfully"
